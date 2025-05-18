@@ -59,6 +59,19 @@
   <button onclick="getWeather()">Fetch Weather</button>
   <div id="weather"></div>
 
+    <h3>To-Do List</h2>
+   <input type="text" id="todoInput" placeholder="New Task">
+   <button onclick="addTask()">Add Task</button>
+   <ul id="todoList"></ul>
+   <!-- Chatbot -->
+   <h3>Simple Chatbot</h2>
+   <input type="text" id="chatInput" placeholder="Ask something">
+   <button onclick="chatbotResponse()">Send</button>
+   <p id="chatResponse"></p>
+   <script src="js/script.js"></script>
+</body>
+</html>
+
   <script>
     // A. BMI Calculator
     function calculateBMI() {
@@ -136,6 +149,25 @@
         .catch(err => {
           document.getElementById("weather").innerText = "Failed to fetch weather data.";
         });
+    }
+//To-Do List
+    function addTask() {
+     let task = document.getElementById("todoInput").value;
+     if (task) {
+     let li = document.createElement("li");
+     li.textContent = task;
+     li.onclick = () => li.remove();
+     document.getElementById("todoList").appendChild(li);
+     }
+    }
+    //Simple Chatbot
+    function chatbotResponse() {
+     let input = document.getElementById("chatInput").value.toLowerCase();
+     let response = "I don't understand.";
+     if (input.includes("hello")) response = "Hello! How can I help?";
+     else if (input.includes("weather")) response = "Try clicking the 'Get Weather' button!";
+    
+     document.getElementById("chatResponse").innerText = response;
     }
   </script>
 </body>
